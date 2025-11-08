@@ -3,7 +3,7 @@
 namespace CompCube_Models.Models.ClientData;
 
 [method: JsonConstructor]
-public class UserInfo(string username, string userId, int mmr, Badge? badge, long rank, string? discordId, bool banned)
+public class UserInfo(string username, string userId, int mmr, DivisionInfo division, Badge? badge, long rank, string? discordId, bool banned)
 {
     [JsonProperty("username")]
     public string Username { get; private set; } = username;
@@ -25,7 +25,6 @@ public class UserInfo(string username, string userId, int mmr, Badge? badge, lon
 
     [JsonProperty("banned")]
     public bool Banned { get; private set; } = banned;
-    
-    [JsonProperty("division")]
-    public DivisionInfo Division { get; private set; } = DivisionInfo.GetDivisionFromMmr(mmr);
+
+    [JsonProperty("division")] public DivisionInfo Division { get; private set; } = division;
 }
