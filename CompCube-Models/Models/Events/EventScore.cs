@@ -2,7 +2,7 @@
 
 namespace CompCube_Models.Models.Events;
 
-public class EventScore(ClientData.UserInfo user, Score? score, int placement) : MatchScore(user, score)
+public class EventScore(MatchScore score, int placement) : MatchScore(score.User, score.Score)
 {
     public readonly int Placement = placement;
 }
