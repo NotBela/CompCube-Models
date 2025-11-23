@@ -11,13 +11,5 @@ public class MatchCreatedPacket : ServerPacket
     [JsonProperty("votingOptions")]
     public readonly VotingMap[] Maps;
     
-    [JsonProperty("opponent")]
-    public readonly CompCube_Models.Models.ClientData.UserInfo Opponent;
-
-    [JsonConstructor]
-    public MatchCreatedPacket(VotingMap[] maps, CompCube_Models.Models.ClientData.UserInfo opponent)
-    {
-        Maps = maps;
-        Opponent = opponent;
-    }
+    
 }
