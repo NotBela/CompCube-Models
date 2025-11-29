@@ -1,21 +1,16 @@
 ﻿using CompCube_Models.Models.ClientData;
-using CompCube_Models.Models.Map;
-using CompCube_Models.Models.Match;
-using CompCube_Server.Gameplay.Match;
 using Newtonsoft.Json;
 
 namespace CompCube_Models.Models.Packets.ServerPackets;
 
-public class MatchCreatedPacket(VotingMap[] maps, TeamData redData, TeamData blueData, int votingTime) : ServerPacket
+[method: JsonConstructor]
+public class MatchCreatedPacket(UserInfo[] red, UserInfo[] blue) : ServerPacket
 {
     public override ServerPacketTypes PacketType => ServerPacketTypes.MatchCreated;
-    
-    [JsonProperty("votingOptions")]
-    public readonly VotingMap[] Maps = maps;
 
-    [JsonProperty("votingTime")] public readonly int VotingTime = votingTime;
+    [JsonProperty("red")]
+    public readonly UserInfo[] Red = red;
 
-    [JsonProperty("redTeam")] public readonly TeamData RedTeam = redData;
-
-    [JsonProperty("blueTeam")] public readonly TeamData BlueTeam = blueData;
+    [JsonProperty("blue")] 
+    public readonly UserInfo[] Blue = blue;
 }
