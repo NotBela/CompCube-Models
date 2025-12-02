@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace CompCube_Models.Models.Packets.ServerPackets;
 
 [method: JsonConstructor]
-public class RoundStartedPacket(VotingMap[] maps, int votingTime, int roundCount) : ServerPacket
+public class RoundStartedPacket(VotingMap[] maps, int votingTime) : ServerPacket
 {
     public override ServerPacketTypes PacketType => ServerPacketTypes.RoundStarted;
 
@@ -13,7 +13,4 @@ public class RoundStartedPacket(VotingMap[] maps, int votingTime, int roundCount
 
     [JsonProperty("votingTime")]
     public readonly int VotingTime = votingTime;
-    
-    [JsonProperty("roundCount")]
-    public readonly int RoundCount = roundCount;
 }
