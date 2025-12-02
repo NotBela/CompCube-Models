@@ -3,7 +3,7 @@
 namespace CompCube_Models.Models.ClientData;
 
 [method: JsonConstructor]
-public class UserInfo(string username, string userId, int mmr, DivisionInfo division, Badge? badge, long rank, string? discordId, bool banned, int wins, int losses, int winstreak, int highestWinstreak)
+public class UserInfo(string username, string userId, int mmr, DivisionInfo division, Badge? badge, long rank, string? discordId, bool banned, int wins, int totalGames, int winstreak, int highestWinstreak)
 {
     [JsonProperty("username")]
     public string Username { get; private set; } = username;
@@ -29,7 +29,7 @@ public class UserInfo(string username, string userId, int mmr, DivisionInfo divi
     [JsonProperty("division")] public DivisionInfo Division { get; private set; } = division;
 
     [JsonProperty("wins")] public int Wins { get; private set; } = wins;
-    [JsonProperty("losses")] public int Losses { get; private set; } = losses;
+    [JsonProperty("losses")] public int TotalGames { get; private set; } = totalGames;
     [JsonProperty("winstreak")] public int Winstreak { get; private set; } = winstreak;
     [JsonProperty("highestWinstreak")] public int HighestWinstreak { get; private set; } = highestWinstreak;
 }
