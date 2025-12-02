@@ -1,13 +1,13 @@
-﻿using CompCube_Models.Models.Map;
+﻿using CompCube_Models.Models.ClientData;
+using CompCube_Models.Models.Map;
 
 namespace CompCube_Models.Models.Match;
 
-public class MatchResultsData(MatchScore winner, MatchScore loser, int mmrChange, VotingMap? map, bool premature, int id, DateTime time)
+public class MatchResultsData(UserInfo[] winners, UserInfo[] losers, int mmrChange, bool premature, int id, DateTime time)
 {
-    public readonly MatchScore Winner = winner;
-    public readonly MatchScore Loser = loser;
+    public readonly UserInfo[] Winner = winners;
+    public readonly UserInfo[] Loser = losers;
     public readonly int MmrChange = mmrChange;
-    public readonly VotingMap? Map = map;
     public readonly bool Premature = premature;
     public readonly int Id = id;
     public readonly DateTime Time = time;

@@ -25,7 +25,8 @@ public abstract class ServerPacket : Packet
         RoundStarted,
         RoundResults,
         MatchCreated,
-        BeginGameTransition
+        BeginGameTransition,
+        MatchResults
     }
     
     public static ServerPacket Deserialize(string data)
@@ -53,6 +54,7 @@ public abstract class ServerPacket : Packet
             ServerPacketTypes.EventStarted => JsonConvert.DeserializeObject<EventStartedPacket>(data),
             ServerPacketTypes.PrematureMatchEnd => JsonConvert.DeserializeObject<PrematureMatchEndPacket>(data),
             ServerPacketTypes.BeginGameTransition => JsonConvert.DeserializeObject<BeginGameTransitionPacket>(data),
+            ServerPacketTypes.MatchResults => JsonConvert.DeserializeObject<MatchResultsPacket>(data),
             _ => throw new Exception("Could not get packet type!")
         })!;
     }
