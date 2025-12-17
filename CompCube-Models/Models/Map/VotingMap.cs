@@ -23,7 +23,7 @@ public class VotingMap(
 
     public enum Category
     {
-        
+        Unknown
     }
     
     public enum DifficultyType
