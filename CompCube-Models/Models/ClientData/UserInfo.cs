@@ -11,6 +11,10 @@ public class UserInfo(string username, string userId, int mmr, DivisionInfo divi
     [JsonProperty("userId")]
     public string UserId { get; private set; } = userId;
 
+    // change to beatleader later
+    [JsonProperty("profilePictureLink")]
+    public string ProfilePictureLink { get; private set; } = "https://cdn.scoresaber.com/avatars/" + (userId.Length == 17 ? $"{userId}.jpg" : "oculus.png");
+
     [JsonProperty("mmr")]
     public int Mmr { get; private set; }= mmr;
 
