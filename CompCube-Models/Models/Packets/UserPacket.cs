@@ -33,5 +33,6 @@ public abstract class UserPacket : Packet
         JoinRequest,
         Vote,
         ScoreSubmission,
+        DiscardMap
     }
 }
