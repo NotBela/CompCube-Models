@@ -1,6 +1,4 @@
-﻿using CompCube_Models.Models.Events;
-using CompCube_Models.Models.Packets.ServerPackets;
-using CompCube_Models.Models.Packets.ServerPackets.Event;
+﻿using CompCube_Models.Models.Packets.ServerPackets;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -14,19 +12,11 @@ public abstract class ServerPacket : Packet
     public enum ServerPacketTypes
     {
         JoinResponse,
-        OpponentVoted,
-        PrematureMatchEnd,
-        UserDisconnected,
-        EventStarted,
-        EventClosed,
-        EventMapSelected,
-        EventMatchStarted,
-        EventScoresUpdated,
-        RoundStarted,
-        RoundResults,
         MatchCreated,
         BeginGameTransition,
-        MatchResults
+        PlayerSelectedMap,
+        RoundResults,
+        StartPickPhase
     }
     
     public static ServerPacket Deserialize(string data)
@@ -42,19 +32,11 @@ public abstract class ServerPacket : Packet
         return (userPacketType switch
         {
             ServerPacketTypes.JoinResponse => JsonConvert.DeserializeObject<JoinResponsePacket>(data),
-            ServerPacketTypes.RoundStarted => JsonConvert.DeserializeObject<RoundStartedPacket>(data),
-            ServerPacketTypes.OpponentVoted => JsonConvert.DeserializeObject<PlayerVotedPacket>(data),
             ServerPacketTypes.MatchCreated => JsonConvert.DeserializeObject<MatchCreatedPacket>(data),
             ServerPacketTypes.RoundResults => JsonConvert.DeserializeObject<RoundResultsPacket>(data),
-            ServerPacketTypes.UserDisconnected => JsonConvert.DeserializeObject<UserDisconnectedPacket>(data),
-            ServerPacketTypes.EventScoresUpdated => JsonConvert.DeserializeObject<EventScoresUpdated>(data),
-            ServerPacketTypes.EventClosed => JsonConvert.DeserializeObject<EventClosedPacket>(data),
-            ServerPacketTypes.EventMapSelected => JsonConvert.DeserializeObject<EventMapSelected>(data),
-            ServerPacketTypes.EventMatchStarted => JsonConvert.DeserializeObject<EventMatchStartedPacket>(data),
-            ServerPacketTypes.EventStarted => JsonConvert.DeserializeObject<EventStartedPacket>(data),
-            ServerPacketTypes.PrematureMatchEnd => JsonConvert.DeserializeObject<PrematureMatchEndPacket>(data),
             ServerPacketTypes.BeginGameTransition => JsonConvert.DeserializeObject<BeginGameTransitionPacket>(data),
-            ServerPacketTypes.MatchResults => JsonConvert.DeserializeObject<MatchResultsPacket>(data),
+            ServerPacketTypes.PlayerSelectedMap => JsonConvert.DeserializeObject<PlayerSelectedMapPacket>(data),
+            ServerPacketTypes.StartPickPhase => JsonConvert.DeserializeObject<StartPickPhasePacket>(data),
             _ => throw new Exception("Could not get packet type!")
         })!;
     }

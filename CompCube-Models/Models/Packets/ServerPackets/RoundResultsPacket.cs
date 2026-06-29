@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 namespace CompCube_Models.Models.Packets.ServerPackets;
 
 [method: JsonConstructor]
-public class RoundResultsPacket(Score redScore, Score blueScore, int redHealth, int blueHealth, float redMultiplier, float blueMultiplier) : ServerPacket
+public class RoundResultsPacket(Score redScore, Score blueScore, int redHealth, int blueHealth, float damageMultiplier) : ServerPacket
 {
     public override ServerPacketTypes PacketType => ServerPacketTypes.RoundResults;
 
@@ -19,9 +19,6 @@ public class RoundResultsPacket(Score redScore, Score blueScore, int redHealth, 
     [JsonProperty("blueHealth")]
     public readonly int BlueHealth = blueHealth;
     
-    [JsonProperty("redMultiplier")]
-    public readonly float RedMultiplier = redMultiplier;
-    
-    [JsonProperty("blueMultiplier")]
-    public readonly float BlueMultiplier = blueMultiplier;
+    [JsonProperty("damageMultiplier")]
+    public readonly float DamageMultiplier = damageMultiplier;
 }
