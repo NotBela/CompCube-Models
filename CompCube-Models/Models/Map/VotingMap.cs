@@ -4,13 +4,13 @@ namespace CompCube_Models.Models.Map;
 
 [method: JsonConstructor]
 public class VotingMap(
-    string hash,
+    string key,
     VotingMap.DifficultyType difficulty,
     VotingMap.Category category,
     string categoryLabel)
 {
     [JsonProperty("hash")]
-    public readonly string Hash = hash;
+    public readonly string Key = key;
 
     [JsonProperty("difficulty")]
     public readonly DifficultyType Difficulty = difficulty;
