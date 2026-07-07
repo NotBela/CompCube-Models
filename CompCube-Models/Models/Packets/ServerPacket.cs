@@ -13,7 +13,6 @@ public abstract class ServerPacket : Packet
     {
         JoinResponse,
         MatchCreated,
-        BeginGameTransition,
         PlayerSelectedMap,
         RoundResults,
         StartPickPhase,
