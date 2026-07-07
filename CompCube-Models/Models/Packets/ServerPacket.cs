@@ -28,19 +28,15 @@ public abstract class ServerPacket : Packet
         
         if (!Enum.TryParse<ServerPacketTypes>(packetTypeJToken.ToObject<string>(), out var userPacketType))
             throw new Exception("Could not deserialize packet type!");
-
-        // if packets suddenly break its because of this
-        return JsonConvert.DeserializeObject<ServerPacket>(data) ?? throw new Exception("Could not deserialize packet!");
         
-        // return (userPacketType switch
-        // {
-        //     ServerPacketTypes.JoinResponse => JsonConvert.DeserializeObject<JoinResponsePacket>(data),
-        //     ServerPacketTypes.MatchCreated => JsonConvert.DeserializeObject<MatchCreatedPacket>(data),
-        //     ServerPacketTypes.RoundResults => JsonConvert.DeserializeObject<RoundResultsPacket>(data),
-        //     ServerPacketTypes.BeginGameTransition => JsonConvert.DeserializeObject<BeginGameTransitionPacket>(data),
-        //     ServerPacketTypes.PlayerSelectedMap => JsonConvert.DeserializeObject<PlayerSelectedMapPacket>(data),
-        //     ServerPacketTypes.StartPickPhase => JsonConvert.DeserializeObject<StartPickPhasePacket>(data),
-        //     _ => throw new Exception("Could not get packet type!")
-        // })!;
+        return (userPacketType switch
+        {
+            ServerPacketTypes.JoinResponse => JsonConvert.DeserializeObject<JoinResponsePacket>(data),
+            ServerPacketTypes.MatchCreated => JsonConvert.DeserializeObject<MatchCreatedPacket>(data),
+            ServerPacketTypes.RoundResults => JsonConvert.DeserializeObject<RoundResultsPacket>(data),
+            ServerPacketTypes.PlayerSelectedMap => JsonConvert.DeserializeObject<PlayerSelectedMapPacket>(data),
+            ServerPacketTypes.StartPickPhase => JsonConvert.DeserializeObject<StartPickPhasePacket>(data),
+            _ => throw new Exception("Could not get packet type!")
+        })!;
     }
 }
