@@ -22,8 +22,9 @@ public abstract class UserPacket : Packet
         return userPacketType switch
         {
             UserPacketTypes.JoinRequest => JsonConvert.DeserializeObject<JoinRequestPacket>(json)!,
-            UserPacketTypes.Vote => JsonConvert.DeserializeObject<VotePacket>(json)!,
+            UserPacketTypes.MapSelection => JsonConvert.DeserializeObject<MapSelectionPacket>(json)!,
             UserPacketTypes.ScoreSubmission => JsonConvert.DeserializeObject<ScoreSubmissionPacket>(json)!,
+            UserPacketTypes.DiscardMaps => JsonConvert.DeserializeObject<DiscardMapsPacket>(json)!,
             _ => throw new Exception("Could not get packet type!")
         };
     }
@@ -31,7 +32,8 @@ public abstract class UserPacket : Packet
     public enum UserPacketTypes
     {
         JoinRequest,
-        Vote,
+        MapSelection,
         ScoreSubmission,
+        DiscardMaps
     }
 }

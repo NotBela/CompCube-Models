@@ -9,6 +9,27 @@ public class VotingMap(
     VotingMap.Category category,
     string categoryLabel)
 {
+    protected bool Equals(VotingMap other)
+    {
+        return Hash == other.Hash && Difficulty == other.Difficulty;
+    }
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null) return false;
+        if (ReferenceEquals(this, obj)) return true;
+        if (obj.GetType() != GetType()) return false;
+        return Equals((VotingMap)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        unchecked
+        {
+            return (Hash.GetHashCode() * 397) ^ (int)Difficulty;
+        }
+    }
+
     [JsonProperty("hash")]
     public readonly string Hash = hash;
 
@@ -34,4 +55,11 @@ public class VotingMap(
         Expert,
         ExpertPlus
     }
+
+    public static bool operator ==(VotingMap a, VotingMap b)
+    {
+        return a.Hash == b.Hash && a.Difficulty == b.Difficulty;
+    }
+
+    public static bool operator !=(VotingMap a, VotingMap b) => !(a == b);
 }

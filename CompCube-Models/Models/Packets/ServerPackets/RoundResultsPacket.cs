@@ -5,16 +5,17 @@ using Newtonsoft.Json;
 namespace CompCube_Models.Models.Packets.ServerPackets;
 
 [method: JsonConstructor]
-public class RoundResultsPacket(Dictionary<string, Score> scores, int redPoints, int bluePoints) : ServerPacket
+public class RoundResultsPacket(Score redScore, Score blueScore, int redHealth, int blueHealth) : ServerPacket
 {
     public override ServerPacketTypes PacketType => ServerPacketTypes.RoundResults;
 
-    [JsonProperty("scores")]
-    public readonly Dictionary<string, Score> Scores = scores;
+    [JsonProperty("redScore")] public readonly Score RedScore = redScore;
+    
+    [JsonProperty("blueScore")] public readonly Score BlueScore = blueScore;
 
-    [JsonProperty("redPoints")]
-    public readonly int RedPoints = redPoints;
+    [JsonProperty("redHealth")]
+    public readonly int RedHealth = redHealth;
 
-    [JsonProperty("bluePoints")]
-    public readonly int BluePoints = bluePoints;
+    [JsonProperty("blueHealth")]
+    public readonly int BlueHealth = blueHealth;
 }
