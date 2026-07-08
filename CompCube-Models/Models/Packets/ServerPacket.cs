@@ -36,6 +36,7 @@ public abstract class ServerPacket : Packet
             ServerPacketTypes.RoundResults => JsonConvert.DeserializeObject<RoundResultsPacket>(data),
             ServerPacketTypes.PlayerSelectedMap => JsonConvert.DeserializeObject<PlayerSelectedMapPacket>(data),
             ServerPacketTypes.StartPickPhase => JsonConvert.DeserializeObject<StartPickPhasePacket>(data),
+            ServerPacketTypes.MatchFinished => JsonConvert.DeserializeObject<MatchFinishedPacket>(data),
             _ => throw new Exception("Could not get packet type!")
         })!;
     }
