@@ -34,4 +34,8 @@ public class VotingMap(
         Expert,
         ExpertPlus
     }
+
+    public static bool operator ==(VotingMap a, VotingMap b) => a.Hash == b.Hash && a.Difficulty == b.Difficulty;
+    
+    public static bool operator !=(VotingMap a, VotingMap b) => !(a == b);
 }
