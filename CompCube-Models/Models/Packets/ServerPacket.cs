@@ -16,7 +16,8 @@ public abstract class ServerPacket : Packet
         PlayerSelectedMap,
         RoundResults,
         StartPickPhase,
-        MatchFinished
+        MatchFinished,
+        UpdateCards
     }
     
     public static ServerPacket Deserialize(string data)
@@ -37,6 +38,7 @@ public abstract class ServerPacket : Packet
             ServerPacketTypes.PlayerSelectedMap => JsonConvert.DeserializeObject<PlayerSelectedMapPacket>(data),
             ServerPacketTypes.StartPickPhase => JsonConvert.DeserializeObject<StartPickPhasePacket>(data),
             ServerPacketTypes.MatchFinished => JsonConvert.DeserializeObject<MatchFinishedPacket>(data),
+            ServerPacketTypes.UpdateCards => JsonConvert.DeserializeObject<UpdateCardsPacket>(data),
             _ => throw new Exception("Could not get packet type!")
         })!;
     }
