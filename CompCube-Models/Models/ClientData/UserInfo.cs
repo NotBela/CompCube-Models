@@ -3,7 +3,7 @@
 namespace CompCube_Models.Models.ClientData;
 
 [method: JsonConstructor]
-public class UserInfo(string username, string userId, int mmr, DivisionInfo division, Badge? badge, long rank, string? discordId, bool banned, int wins, int totalGames, int winstreak, int highestWinstreak)
+public class UserInfo(string username, string userId, int mmr, Badge? badge, long rank, string? discordId, bool banned, int wins, int totalGames, int winstreak, int highestWinstreak)
 {
     [JsonProperty("username")]
     public string Username { get; private set; } = username;
