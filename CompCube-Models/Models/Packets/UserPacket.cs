@@ -9,17 +9,23 @@ public abstract class UserPacket : Packet
     [JsonProperty("type")]
     public abstract UserPacketTypes PacketType { get; }
     
-    public static UserPacket Deserialize(string json)
+    public static bool TryDeserialize(string json, out UserPacket? packet)
     {
         var jobj = JObject.Parse(json);
-        
-        if (!jobj.TryGetValue("type", out var packetTypeJToken))
-            throw new Exception("Could not deserialize packet!");
-        
-        if (!Enum.TryParse<UserPacketTypes>(packetTypeJToken.ToObject<string>(), out var userPacketType))
-            throw new Exception("Could not deserialize packet type!");
 
-        return userPacketType switch
+        if (!jobj.TryGetValue("type", out var packetTypeJToken))
+        {
+            packet = null;
+            return false;
+        }
+
+        if (!Enum.TryParse<UserPacketTypes>(packetTypeJToken.ToObject<string>(), out var userPacketType))
+        {
+            packet = null;
+            return false;
+        }
+
+        packet = userPacketType switch
         {
             UserPacketTypes.JoinRequest => JsonConvert.DeserializeObject<JoinRequestPacket>(json)!,
             UserPacketTypes.MapSelection => JsonConvert.DeserializeObject<MapSelectionPacket>(json)!,
@@ -27,6 +33,8 @@ public abstract class UserPacket : Packet
             UserPacketTypes.DiscardMaps => JsonConvert.DeserializeObject<DiscardMapsPacket>(json)!,
             _ => throw new Exception("Could not get packet type!")
         };
+
+        return true;
     }
 
     public enum UserPacketTypes
