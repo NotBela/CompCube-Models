@@ -29,9 +29,7 @@ public class UserInfo(string username, string userId, int mmr, DivisionInfo divi
 
     [JsonProperty("banned")]
     public bool Banned { get; private set; } = banned;
-
-    [JsonProperty("division")] public DivisionInfo Division { get; private set; } = division;
-
+    
     [JsonProperty("wins")] public int Wins { get; private set; } = wins;
     [JsonProperty("losses")] public int TotalGames { get; private set; } = totalGames;
     [JsonProperty("winstreak")] public int Winstreak { get; private set; } = winstreak;
